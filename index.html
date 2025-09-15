@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>EcoKart — a small eco-friendly products store</title>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <div id="app" class="max-w-6xl mx-auto">
+    <!-- Navbar -->
+    <!-- <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-md flex items-center justify-between py-4 px-4 md:px-6 bg-white shadow-sm sticky top-0 z-50">
+      <a href="#/" class="flex items-center gap-3">
+        <div class="text-2xl font-extrabold bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent tracking-wide cursor-pointer">EK</div>
+        <div>
+          <div class="text-lg font-semibold">EcoKart</div>
+          <div class="text-xs text-slate-500">Eco-friendly store</div>
+        </div>
+      </a>
+
+      <div class="flex-1 px-4 md:px-8">
+        <div class="relative">
+          <input id="searchInput" type="search" placeholder="Search products..." class="w-full rounded-full border px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-200" />
+          <button id="searchBtn" class="absolute right-1 top-1/2 -translate-y-1/2 bg-green-600 text-white px-3 py-1 rounded-full text-sm">Search</button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="cartBtn" class="relative">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.2 6.3A1 1 0 0 0 6.8 21h10.4a1 1 0 0 0 .98-.76L20 13M7 13l10 0"/></svg>
+          <span id="cartCount" class="absolute -right-2 -top-2 bg-red-500 text-white rounded-full px-2 text-xs">0</span>
+        </button>
+        <a href="#/checkout" class="bg-gradient-to-r from-green-500 to-cyan-500 text-white px-4 py-2 rounded-md hidden md:inline">Checkout</a>
+      </div>
+    </header> -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-md flex items-center justify-between py-4 px-4 md:px-6 bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between py-3 px-4 md:px-6">
+    
+    <!-- Logo -->
+    <a href="#/" class="flex items-center gap-3 group">
+      <div class="text-2xl font-extrabold bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent tracking-wide transition group-hover:scale-110">
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <div>
+        <div class="text-lg font-semibold group-hover:text-green-600 transition">EcoKart</div>
+        <div class="text-xs text-slate-500">Eco-friendly store</div>
+      </div>
+    </a>
+
+    <!-- Search Bar -->
+    <div class="flex-1 px-4 md:px-8 hidden sm:block">
+      <div class="relative">
+        <input id="searchInput" type="search" placeholder="Search eco-products..." 
+          class="w-full rounded-full border border-slate-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-300 transition" />
+        <button id="searchBtn" 
+          class="absolute right-1 top-1/2 -translate-y-1/2 bg-green-600 text-white px-3 py-1 rounded-full text-sm hover:bg-green-700 transition">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-4">
+      <!-- Wishlist -->
+      <a href="#/wishlist"  class="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50 transition">
+        <i class="fa-regular fa-heart text-slate-700 text-lg"></i>
+      </a>
+
+      <!-- User -->
+      <button class="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50 transition">
+        <i class="fa-regular fa-user text-slate-700 text-lg"></i>
+      </button>
+
+      <!-- Cart -->
+      <button id="cartBtn" class="relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-green-50 transition">
+        <i class="fa-solid fa-cart-shopping text-slate-700 text-lg"></i>
+        <span id="cartCount" class="absolute -right-1 -top-1 bg-red-500 text-white rounded-full px-2 text-xs shadow">0</span>
+      </button>
+
+      <!-- Checkout CTA -->
+      <a href="#/checkout" 
+        class="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-cyan-500 text-white px-5 py-2 rounded-full font-medium shadow hover:shadow-md transition">
+        <i class="fa-solid fa-bag-shopping"></i>
+        Checkout
+      </a>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Page container -->
+    <main id="page" class="page p-4 md:p-6"></main>
+
+     <!-- Footer -->
+    <footer class="relative w-full bg-gradient-to-r from-green-50 via-cyan-50 to-blue-50 pt-14 pb-8 mt-20 border-t border-slate-200">
+  <div class="w-full px-8 mx-auto max-w-7xl">
+    
+    <!-- Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      
+      <!-- Brand -->
+      <div>
+        <h5 class="text-2xl font-extrabold bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent mb-4">
+          EcoKart
+        </h5>
+        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+          Your one-stop eco-friendly marketplace. Shop sustainably, live consciously.
+        </p>
+        <!-- Social Links -->
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow hover:bg-green-50 transition">
+            <i class="fa-brands fa-meta text-slate-700"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow hover:bg-pink-50 transition">
+            <i class="fa-brands fa-instagram text-slate-700"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white shadow hover:bg-slate-100 transition">
+            <i class="fa-brands fa-x-twitter text-slate-700"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Links -->
+      <div>
+        <h6 class="text-base font-semibold text-slate-800 mb-3">Product</h6>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li><a href="#" class="hover:text-green-600 transition">Overview</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Features</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h6 class="text-base font-semibold text-slate-800 mb-3">Company</h6>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li><a href="#" class="hover:text-green-600 transition">About Us</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Press</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">News</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h6 class="text-base font-semibold text-slate-800 mb-3">Resources</h6>
+        <ul class="space-y-2 text-sm text-slate-600">
+          <li><a href="#" class="hover:text-green-600 transition">Blog</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Newsletter</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Events</a></li>
+          <li><a href="#" class="hover:text-green-600 transition">Help Center</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-slate-200 my-8"></div>
+
+    <!-- Bottom Section -->
+    <div class="flex flex-col md:flex-row items-center justify-between text-sm text-slate-500">
+      <p class="mb-4 md:mb-0">© <span id="year"></span> <span class="font-semibold text-slate-700">EcoKart</span>. All rights reserved.</p>
+      
+      <!-- Newsletter -->
+      <form class="flex w-full md:w-auto">
+        <input type="email" placeholder="Subscribe to newsletter" 
+               class="w-full md:w-64 px-4 py-2 text-sm border border-slate-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-400" />
+        <button type="submit" 
+                class="px-5 py-2 bg-gradient-to-r from-green-500 to-cyan-500 text-white text-sm rounded-r-lg shadow hover:shadow-md transition">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/product.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/thanks.js"></script>
+  <script src="js/notfound.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/wishlist.js"></script>
+</body>
+</html>

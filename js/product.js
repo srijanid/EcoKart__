@@ -31,7 +31,7 @@ function renderProductPage(params) {
 
         <!-- Price -->
         <div class="flex items-center gap-2 text-2xl font-bold text-green-700">
-          <i class="fa-solid fa-indian-rupee-sign"></i> ${money(product.price)}
+          ${money(product.price)}
         </div>
 
         <!-- Description -->
@@ -104,14 +104,23 @@ function renderProductPage(params) {
 
   // Add to wishlist
   document.getElementById("wishlistBtn").addEventListener("click", () => {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
-    if (!wishlist.find(it => it.id === product.id)) {
-      wishlist.push(product);
-      localStorage.setItem("wishlist", JSON.stringify(wishlist));
-      alert("✅ Added to Wishlist");
-    } else {
-      alert("❤️ Already in Wishlist");
-    }
-  });
+  const wishlist = JSON.parse(localStorage.getItem(LS_KEYS.WISHLIST) || "[]");
+
+  if (!wishlist.find(it => it.id === product.id)) {
+    wishlist.push({
+      id: product.id,
+      title: product.title,
+      img: product.img,
+      price: product.price,
+      category: product.category,
+      size: selectedSize || null, // optional
+    });
+
+    localStorage.setItem(LS_KEYS.WISHLIST, JSON.stringify(wishlist));
+    alert("Added to Wishlist");
+  } else {
+    alert("Already in Wishlist");
+  }
+});
 }
 

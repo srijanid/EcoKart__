@@ -100,8 +100,10 @@ function saveWishlist(wishlist) {
   localStorage.setItem(LS_KEYS.WISHLIST, JSON.stringify(wishlist));
 }
 
-function isInWishlist(id) {
-  return getWishlist().some(p => p.id === id);
+function updateWishlistCount() {
+  const count = getWishlist().length; // just number of products
+  const el = document.getElementById("wishlistCount");
+  if (el) el.textContent = count;
 }
 
 function toggleWishlist(product) {
@@ -109,13 +111,13 @@ function toggleWishlist(product) {
   if (isInWishlist(product.id)) {
     wishlist = wishlist.filter(p => p.id !== product.id);
   } else {
-    wishlist.push(product);
+    wishlist.push({ id: product.id, title: product.title, price: product.price, img: product.img });
   }
   saveWishlist(wishlist);
+  updateWishlistCount(); // refresh badge immediately
 }
 
-function updateWishlistCount() {
-  const count = getWishlist().length;
-  const el = document.getElementById("wishlistCount");
-  if (el) el.textContent = count;
+
+function isInWishlist(id) {
+  return getWishlist().some(p => p.id === id);
 }

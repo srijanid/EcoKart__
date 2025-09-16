@@ -7,7 +7,7 @@ const ROUTES = {
   '/cart': renderCartPage,
   '/checkout': renderCheckoutPage,
   '/thanks': renderThanksPage,
-  // '/wishlist':renderWishlistPage
+  '/wishlist':renderWishlistPage
 };
 
 function parseHash() {
@@ -41,3 +41,7 @@ window.addEventListener('load', async () => {
   updateCartCount();
   route();
 });
+
+window.addEventListener('load',async()=>{
+  updateWishlistCount();
+})

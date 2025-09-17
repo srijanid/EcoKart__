@@ -5,8 +5,8 @@ function renderWishlistPage() {
   if (!wishlist.length) {
     page.innerHTML = `
       <div class="flex flex-col items-center justify-center py-20 px-6 text-center">
-        <div class="w-24 h-24 flex items-center justify-center rounded-full bg-red-50 text-red-500 mb-6 shadow-sm">
-          <i class="fa-regular fa-heart text-5xl"></i>
+        <div class="w-24 h-24 flex items-center justify-center rounded-full bg-red-50 text-red-500 mb-6 shadow-md">
+          <i class="fa-solid fa-heart text-5xl"></i>
         </div>
         <h2 class="text-2xl font-bold text-slate-800 mb-2">Your Wishlist is Empty</h2>
         <p class="text-slate-500 mb-6 max-w-md">
@@ -84,12 +84,12 @@ function renderWishlistPage() {
   });
 
   // Product click
-  // page.querySelectorAll('[data-id]').forEach(card => {
-  //   card.addEventListener('click', e => {
-  //     if (e.target.classList.contains('add-to-cart')) return;
-  //     location.hash = '#/product?id=' + card.dataset.id;
-  //   });
-  // });
+  page.querySelectorAll('[data-id]').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.classList.contains('add-to-cart')) return;
+      location.hash = '#/product?id=' + card.dataset.id;
+    });
+  });
 
   // Remove from wishlist
   page.querySelectorAll(".remove-wish").forEach(btn => {

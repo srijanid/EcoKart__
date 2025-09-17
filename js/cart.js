@@ -8,9 +8,23 @@ function renderCartPage() {
     .filter(it => it.product); // ignore missing products
 
   if (!items.length) {
-    page.innerHTML = `<div class="p-8 text-center">Your cart is empty.</div>`;
+     page.innerHTML = `
+      <div class="flex flex-col items-center justify-center py-20 px-6 text-center">
+        <div class="w-24 h-24 flex items-center justify-center rounded-full bg-yellow-100 text-yellow-500 mb-6 shadow-sm">
+          <i class="fa-solid fa-cart-shopping text-5xl"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 mb-2">Your Cart is Empty</h2>
+        <p class="text-slate-500 mb-6 max-w-md">
+          Looks like you haven’t added any products yet. Start exploring our eco-friendly products.
+        </p>
+        <a href="#/" class="px-6 py-3 bg-gradient-to-r from-green-500 to-cyan-500 text-white font-semibold rounded-lg shadow hover:shadow-lg hover:from-green-600 hover:to-cyan-600 transition">
+          Browse Products
+        </a>
+      </div>
+    `;
     return;
   }
+  
 
   page.innerHTML = `
   <div class="max-w-5xl mx-auto py-8">

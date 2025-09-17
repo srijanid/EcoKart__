@@ -31,7 +31,7 @@ function renderHome(params = {}) {
   // Layout
   page.innerHTML = `
     <!-- Hero (only for home) -->
-    <section class="relative bg-gradient-to-r from-green-100 via-cyan-100 to-blue-100 pt-12 pb-16 text-center rounded-2xl shadow-md mb-10">
+    <section class="relative bg-gradient-to-r from-green-100 via-cyan-100 to-blue-100 pt-12 pb-16 text-center rounded-2xl shadow-md mb-10 max-w-7xl mx-auto">
       <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-6xl font-extrabold text-slate-800 mb-6">
           Shop Eco-Friendly, Live Sustainably
@@ -39,7 +39,7 @@ function renderHome(params = {}) {
         <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
           Discover eco-friendly products handpicked to make your lifestyle greener and smarter.
         </p>
-        <a href="#products"
+        <a href="#"
           class="inline-block px-8 py-3 rounded-lg bg-gradient-to-r from-green-500 to-cyan-500 text-white font-semibold shadow-md hover:shadow-lg transition">
           Shop Now
         </a>

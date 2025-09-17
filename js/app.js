@@ -1,5 +1,3 @@
-// ROUTER
-
 const ROUTES = {
   '': renderHome,
   '/': renderHome,

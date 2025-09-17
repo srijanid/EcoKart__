@@ -112,6 +112,10 @@ function renderCheckoutPage() {
                   <img src="/assets/phonpe.png" class="h-8 p-1">
                   <img src="/assets/paytm.png" class="h-8">
                 </div>
+                <div id="upiDetails" class="hidden mt-2">
+                  <input type="text" name="upi" placeholder="yourname@upi" class="field w-full border rounded-lg px-3 py-2 text-sm" />
+                  <p class="error-msg text-red-500 text-xs mt-1 hidden"></p>
+                </div>
               </label>
 
               <!-- Card -->
@@ -128,12 +132,12 @@ function renderCheckoutPage() {
                 </div>
                 <div id="cardDetails" class="hidden space-y-2 mt-2">
                   <div>
-                    <input type="tel" inputmode="numeric" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" maxlength="19" required class="field w-full border rounded-lg px-3 py-2 text-sm" />
+                    <input type="tel" inputmode="numeric" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" maxlength="19" class="field w-full border rounded-lg px-3 py-2 text-sm" />
                     <p class="error-msg text-red-500 text-xs mt-1 hidden"></p>
                   </div>
                   <div class="flex gap-2">
                     <div class="flex-1">
-                      <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required class="field w-full border rounded-lg px-3 py-2 text-sm" />
+                      <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" class="field w-full border rounded-lg px-3 py-2 text-sm" />
                       <p class="error-msg text-red-500 text-xs mt-1 hidden"></p>
                     </div>
                     <div class="flex-1">
@@ -206,6 +210,16 @@ states.forEach(state => {
   stateSelect.appendChild(opt);
 });
 
+  page.querySelectorAll("input[name=payment]").forEach((radio) => {
+  radio.addEventListener("change", (e) => {
+    const cardBox = document.getElementById("cardDetails");
+    const upiBox = document.getElementById("upiDetails");
+    cardBox.classList.toggle("hidden", e.target.value !== "Card");
+    upiBox.classList.toggle("hidden", e.target.value !== "UPI");
+  });
+});
+
+
   // Coupon logic
   page.querySelector("#applyCouponBtn").addEventListener("click", () => {
     const code = page.querySelector("#couponInput").value.trim().toUpperCase();
@@ -276,9 +290,10 @@ if (!/^\d{6}$/.test(data.zip)) {
   setError(zip, "");
 }
 
+// Validate payment method
 if (data.payment === "Card") {
   const cardNumber = form.querySelector("input[name=cardNumber]");
-  if (!/^\d{16}$/.test(data.cardNumber || "")) {
+  if (!/^\d{16}$/.test((data.cardNumber || "").replace(/\s+/g, ""))) {
     setError(cardNumber, "Enter a valid 16-digit card number.");
     valid = false;
   } else {
@@ -286,7 +301,7 @@ if (data.payment === "Card") {
   }
 
   const expiry = form.querySelector("input[name=expiry]");
-  if (!/^\d{2}\/\d{2}$/.test(data.expiry || "")) {
+  if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(data.expiry || "")) {
     setError(expiry, "Enter expiry in MM/YY format.");
     valid = false;
   } else {
@@ -300,7 +315,18 @@ if (data.payment === "Card") {
   } else {
     setError(cvv, "");
   }
+} else if (data.payment === "UPI") {
+  const upi = form.querySelector("input[name=upi]");
+  if (!/^[\w.-]+@[\w.-]+$/.test(data.upi || "")) {
+    setError(upi, "Enter a valid UPI ID (example: name@upi).");
+    valid = false;
+  } else {
+    setError(upi, "");
+  }
+} else if (data.payment === "COD") {
+  // no extra validation
 }
+
 
     if (!valid) return;
 

@@ -209,7 +209,7 @@ states.forEach(state => {
   opt.textContent = state;
   stateSelect.appendChild(opt);
 });
-
+// check if state was previously selected
   page.querySelectorAll("input[name=payment]").forEach((radio) => {
   radio.addEventListener("change", (e) => {
     const cardBox = document.getElementById("cardDetails");
